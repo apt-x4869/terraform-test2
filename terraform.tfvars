@@ -6,15 +6,15 @@ region = "ap-south-1"
 #existing_vpc = false
 #vpc_id = "vpc-cae82aa1"
 
-#VPC name is must for naming
+#VPC name is must for naming convention
 vpc_name = "MDS-NON-PROD-DEV-US-EAST-2"
 
-/* Creating New VPC*/
 
-cidr_block = "10.43.10.0/24"
+/* Creating New VPC*/
+cidr_block = "172.31.0.0/16"
 
 /* For Secondary CIDR Block */
- # secondary_cidr_blocks = [ "10.43.64.0/26", "10.43.128.0/26", "10.43.192.0/26" ]
+#secondary_cidr_blocks = [ "10.43.64.0/26", "10.43.128.0/26", "10.43.192.0/26" ]
 /* For Seconday CIDR Block*/
 
 /* Subnets */
@@ -29,5 +29,8 @@ private_subnet = {
 
 #public subnet required for NAT Gateway
 public_subnet = {
-  "public"   = [ "172.31.192.0/20", "172.31.208.0/21", "172.31.216.0/21" ]
+  "default"   = [ "172.31.192.0/20", "172.31.208.0/21", "172.31.216.0/21" ]
   }
+
+#subnet name in which nat gateway will be created
+nat_subnet = "default"

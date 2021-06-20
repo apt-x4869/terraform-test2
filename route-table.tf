@@ -8,7 +8,7 @@ resource "aws_route_table" "private" {
     count = local.nat_gateway_count
     vpc_id = "${local.vpc_id}"
     tags = {
-        Name = "${var.vpc_name}-private-rt-${element(aws_subnet.public_subnet.*.availability_zone, count.index)}"
+        Name = "${var.vpc_name}-private-rt-${length(regexall("^[a-z]{2}-", element(local.azs, count.index))) > 0 ? element(local.azs, count.index) : count.index }"
     }
 }
 
@@ -24,7 +24,7 @@ resource "aws_route" "private_nat_gateway" {
 }
 
 locals {
-  private_route_table_id = aws_route.private.*.id 
+  private_route_table_id = aws_route_table.private.*.id 
 }
 /*
 
@@ -59,7 +59,7 @@ resource "aws_route_table" "public" {
 }
 
 locals {
-  public_route_table_id = [ aws_route.public.id ]
+  public_route_table_id = [ aws_route_table.public.id ]
 }
 
 

@@ -35,18 +35,15 @@ variable "azs" {
 
 variable "public_subnet" {
   description = "List of valid public subnet ranges to create"
-  type        = list(string)
-  default     = []
+  type        = map
 }
 
 variable "private_subnet" {
   description = "List of valid private subnet ranges to create"
-  type        = list(string)
-  default     = []
+  type        = map
 }
 
-variable "k8s_subnet" {
-  description = "List of valid private subnet ranges to create"
-  type        = list(string)
-  default     = []
+variable "nat_subnet" {
+  type = string
+  description = "Name of subnet in which nat gateways will be created"
 }

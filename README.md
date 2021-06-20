@@ -40,7 +40,7 @@ If Existing VPC, give **existing_vpc=true** :
 Creates IGW for public subnets
 ```
 
-## 3. Subnets (Private & Public + K8s):
+## 3. Subnets (Private & Public):
 Can be left empty if not needed
 ```
 Creates private subnets
@@ -48,9 +48,27 @@ Creates private subnets
 
 Creates public subnet
     - public_subnets
+```
+Example:
+Dynamic Subnet
+```
+private_subnets = {
+    k8s     = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
+    kafka   = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
+    elk     = [ ... ]
+    other   = [ ... ]
+    .
+    .
+    }
 
-Creates k8s subnet
-    - k8s_subnets
+public_subnets = {
+    sub1    = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
+    sub2    = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
+    sub3    = [ ... ]
+    sub4    = [ ... ]
+    .
+    .
+    }
 ```
 
 ## 4. EIP & NAT gateway:
@@ -84,21 +102,4 @@ Remaining:
 ## Adding Security Groups
     - k8s sg group
     
-## Dynamic Subnet
-    - private_subnets = {
-                    k8s     = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
-                    kafka   = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
-                    elk     = [ ... ]
-                    other   = [ ... ]
-                    .
-                    .
-                 }
 
-    - public_subnets = {
-                    sub1    = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
-                    sub2    = [ "10.43.11.23/27", "10.43.11.23/27", "10.43.11.23/27" ]
-                    sub3    = [ ... ]
-                    sub4    = [ ... ]
-                    .
-                    .
-                 }

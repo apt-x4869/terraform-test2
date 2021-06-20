@@ -19,6 +19,7 @@ module "private_subnets" {
   
   subnet = each.value
   subnet_name = each.key
+  subnet_type = "private"
 
   route_table_id = local.private_route_table_id
 }
@@ -35,6 +36,7 @@ module "public_subnets" {
   
   subnet = each.value
   subnet_name = each.key
+  subnet_type = "public"
 
   route_table_id = local.public_route_table_id
 }

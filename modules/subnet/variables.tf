@@ -14,6 +14,11 @@ variable "subnet_name" {
     type = string
 }
 
+variable "subnet_type" {
+  type = string
+  default = "private"
+}
+
 variable "subnet" {
   type = list(string)
   default = []

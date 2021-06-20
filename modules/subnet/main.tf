@@ -17,7 +17,7 @@ resource "aws_subnet" "subnet" {
     availability_zone= length(regexall("^[a-z]{2}-", element(local.azs, count.index))) > 0 ? element(local.azs, count.index) : null
     map_public_ip_on_launch = false
     tags = {
-        Name = "${var.vpc_name}-${var.subnet_name}-private-${length(regexall("^[a-z]{2}-", element(local.azs, count.index))) > 0 ? element(local.azs, count.index) : count.index }"
+        Name = "${var.vpc_name}-${var.subnet_type}-${var.subnet_name}-${length(regexall("^[a-z]{2}-", element(local.azs, count.index))) > 0 ? element(local.azs, count.index) : count.index }"
     }
 }
 
